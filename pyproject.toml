@@ -1,0 +1,25 @@
+[project]
+name = "platform-snowflake-client"
+version = "0.2.0"
+description = "Agnostic Snowflake adapter for endymion MFEs: connection, settings, schema-level row contracts, and dev fixtures. No app-specific queries."
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.8,<3.0",
+  "pydantic-settings>=2.4,<3.0",
+]
+
+[project.optional-dependencies]
+# Real Snowflake driver. Optional so MFEs that only use mock mode don't
+# pull it in (the binary deps are heavy).
+snowflake = ["snowflake-connector-python>=3.7,<4.0"]
+dev = ["pytest>=8.2,<9.0"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
